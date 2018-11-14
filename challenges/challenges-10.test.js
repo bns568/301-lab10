@@ -59,13 +59,20 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
 
 const divisibleByFiveTwoToThePower = (input) => {
-  input = input.reduce( (acc, cur) => {
-    cur.forEach(val => acc.push(val))
-    return acc
-  }, [])
-  input = input.filter(val => !NaN && val % 5 === 0)
-  input = input.map(val => 2 ^ val)
+  input = input.map(val => {
+    return val = val.filter(val2 => (typeof(val2) === "number") && (val2 % 5 === 0))
+  })
+  console.log(input);
+  // input = input.reduce( (acc, cur) => {
+  //   cur.forEach(val => acc.push(val))
+  //   return acc
+  // }, [])
+  //input = input.filter(val => !NaN && val % 5 === 0)
+  input = input.map(val => {
+    return val = val.map(val2 => Math.pow(2, val2))
+  })
   console.log(input)
+  return input;
 };
 
 /* ------------------------------------------------------------------------------------------------
