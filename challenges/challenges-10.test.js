@@ -63,7 +63,7 @@ const divisibleByFiveTwoToThePower = (input) => {
     cur.forEach(val => acc.push(val))
     return acc
   }, [])
-  input = input.filter(val => val % 5 === 0)
+  input = input.filter(val => !NaN && val % 5 === 0)
   input = input.map(val => 2 ^ val)
   console.log(input)
 };
@@ -131,7 +131,18 @@ let starWarsData = [{
 }]
 
 let findMaleAndFemale = (data) => {
-  // Solution code here...
+  let names = "";
+  data.forEach((val, i) => { 
+    if(val.gender === 'male' || val.gender === 'female'){
+      if(names.length === 0) {
+        names += val.name
+      }
+      else {
+        names += " and " + val.name 
+      }
+    }
+  })
+  return names;
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -141,7 +152,16 @@ Write a function named findShortest that, given the Star Wars data from Challeng
 ------------------------------------------------------------------------------------------------ */
 
 let findShortest = (data) => {
-  // Solution code here...
+  let shorty = data.reduce((acc, val) => {
+    if(parseInt(val.height) < acc.height){
+      return {name: val.name, height: parseInt(val.height)};
+    }
+    else{
+
+      return acc;
+    } 
+  }, {name: data[0].name, height: parseInt(data[0].height)})
+  return shorty.name; 
 }
 
 /* ------------------------------------------------------------------------------------------------
